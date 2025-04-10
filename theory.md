@@ -10,4 +10,5 @@
     - Visual Studio Code (https://code.visualstudio.com/Download)
     - Java Development Kit (https://www.oracle.com/java/technologies/downloads/#java21)
     - Version Control System (https://git-scm.com/downloads)
-    
+    - Starting Visual Studio Code and installing Java Extensions
+        - 

@@ -11,4 +11,6 @@
     - Java Development Kit (https://www.oracle.com/java/technologies/downloads/#java21)
     - Version Control System (https://git-scm.com/downloads)
     - Starting Visual Studio Code and installing Java Extensions
-        - 
+    - git clone https://github.com/hshdacs/SDP_S_2025_04
+    - Open Folder SDP_S_2025_04
+    - Open file Test.java and run (above main)

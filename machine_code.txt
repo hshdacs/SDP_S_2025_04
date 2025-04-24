@@ -1,0 +1,14 @@
+MACHINE CODE
+
+register file: r0 .. r15
+RISC (reduced instruction set computer)
+instructions:
+
+loop:
+	mov r0, r2		; r2 = r0 (transfer the content of r0 into r2)
+	add r1, r2		; r2 = r2 + r1
+	bz  exit		; the result of the previous operation is evaluated
+	inc r1			; shortcut for r1 = r1 + 1 (r1++)
+	jmp loop		; unconditional jump to that location
+exit:
+	rts

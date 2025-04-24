@@ -47,6 +47,7 @@
         - long: 64 bits
         - float (floating point): 32 bits
             (compound data type: significand precision:23, exponent:8, sign:1)
+            => **floats are evil**
         - double: 64 bits (sp:52, exponent:11, sign:1)
     - Operation
         ```
@@ -67,12 +68,56 @@
         - Elements
             - Sequence
             - Condition (if, switch)
-            - Loop (for, while, do-while)
+            - Loop (for, while, do-while) aka Condition with Jump
         - Formalism
             - Pseudo Code
             - Flowchart
-            - Nassi-Schneiderman Diagram
+            - Nassi-Schneiderman Diagram (Struktogramm)
         - Example (Euclid, GCD)
-            When (c,d) is not (a,b), and taken alternating (a,b) or (c,d) the
-            smallest from the tallest, then it will eventually remain a number
-            that measures both of the previous.
+            ```
+            When (c,d) is not (a,b), and taken alternating (a,b) or (c,d) the smallest from the tallest, then it will eventually remain a number that measures both of the previous.
+            ```
+
+## Session 3
+24.04.2025
+
+- Algorithm (for imperative/procedural programming), e.g. Euclid
+    - pencil test
+        ```
+        e.g. (a,b) = 24, (c,d) = 16
+        1) 24 != 16
+        2) 24 > 16
+        3) 24 - 16 = 8
+        4) 8 != 16
+        5) 8 < 16
+        6) 16 - 8 = 8
+        7) 8 == 8
+        => 8 is the GCD of 24 and 16: gcd(24,16) = 8
+        ```
+    - a better formalism
+        - Pseudo (in theory there is no rule for pseudo code, but
+            use the same words for the single steps of the algorithm)
+            ```
+            (a, b) => x
+            (c, d) => y
+            while x != y
+                if x > y
+                    x <- x - y
+                otherwise
+                    y <- y - x
+            x (or y) => gcd
+            ```
+        - Flowchart
+            ``` mermaid
+                flowchart TD
+                    Start --> id1
+                    id1{x != y ?} -- no --> Stop
+                    id1 -- yes --> id2{x > y ?}
+                    id2 -- yes --> A[x <- x - y]
+                    id2 -- no --> B[y <- y - x]
+                    A --> id1
+                    B --> id1
+            ```
+        - Nassi-Schneiderman Diagram (Struktogramm)
+
+            ![Euclidian Algorithm](euclid.png)

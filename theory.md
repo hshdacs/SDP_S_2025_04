@@ -157,21 +157,21 @@
     Find the largest sequence of Collatz between 1 and 1'000'000
     ```
     e.g.
-        n = 7           1
-        n = 22          2
-        n = 11          3
-        n = 34          4
-        n = 17          5
-        n = 52          6
-        n = 26          7
-        n = 13          8
-        n = 40          9
-        n = 20          10
-        n = 10          11
-        n = 5           12
-        n = 16          13
-        n = 8           14
-        n = 4           15
-        n = 2           16
-        n = 1  finished 17 length of this sequence
+        n = 7           0
+        n = 22          1
+        n = 11          2
+        n = 34          3
+        n = 17          4
+        n = 52          5
+        n = 26          6
+        n = 13          7
+        n = 40          8
+        n = 20          9
+        n = 10          10
+        n = 5           11
+        n = 16          12
+        n = 8           13
+        n = 4           14
+        n = 2           15
+        n = 1  finished 16 length of this sequence
     ```

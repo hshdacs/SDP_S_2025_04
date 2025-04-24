@@ -182,8 +182,8 @@
     Write a guessing game, where the computer randomly choose a
     secret number and the user can guess this number
 
-    a) let the user know if the number is lower or higher
-    b) MasterMind (prerequisit: no double digits, fixed number of digits)
+    1. let the user know if the number is lower or higher
+    2. MasterMind (prerequisit: no double digits, fixed number of digits)
         - give a star (*) for each digit of the guess that matches
           the digit of the secret number
         - give a circle (o) for each digit of the guess that is
@@ -191,7 +191,7 @@
         
         see https://en.wikipedia.org/wiki/Mastermind_(board_game)
 
-       Hint: using methods (functions/procedures/subroutines)
+        Hint: using methods (functions/procedures/subroutines)
     ```
     e.g. secret number 4713
          guess is      2739

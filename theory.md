@@ -121,3 +121,57 @@
         - Nassi-Schneiderman Diagram (Struktogramm)
 
             ![Euclidian Algorithm](euclid.png)
+
+- Characteristics of Algorithms
+    - Determinism
+    - Determination
+    - Termination
+    - Effectiveness
+    - Complexity (Time & Space)
+        - Landau Notation
+            - O(1) - constant
+            - O(log2 n) - logarithmic
+            - O(n) - linear
+            - O(n * log2 n) - linearithmic
+            - O(n^2) - square
+            - O(n^k) - polynomial
+            - O(k^n) - exponential
+        - Special groups of algorithms
+            - NP (non-destermistic polynomial) complete
+
+- Exercise 3
+    - Collatz (Number/Sequence)
+    ```
+        there is some integer number n (> 0)
+
+        while (n != 1)
+            if (n is even)
+                n <- n / 2
+            otherwise
+                n <- 3*n + 1
+    ```
+    The big question here: will this algorithm terminate for
+    every value of n?
+
+    Extra task for the experts:
+    Find the largest sequence of Collatz between 1 and 1'000'000
+    ```
+    e.g.
+        n = 7           1
+        n = 22          2
+        n = 11          3
+        n = 34          4
+        n = 17          5
+        n = 52          6
+        n = 26          7
+        n = 13          8
+        n = 40          9
+        n = 20          10
+        n = 10          11
+        n = 5           12
+        n = 16          13
+        n = 8           14
+        n = 4           15
+        n = 2           16
+        n = 1  finished 17 length of this sequence
+    ```

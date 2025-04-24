@@ -8,7 +8,7 @@ public class Euclid {
 
         System.out.print("The GCD of " + x + " and " + y + " is ");        
 
-        if (x < 0) x = -x; // Math.abs(x)
+        if (x < 0) x = -x; // Math.abs(x), aka |x| in real math
         if (y < 0) y = -y;
 
         if (x == 0) x = y;

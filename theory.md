@@ -276,9 +276,19 @@
                 and has no returtype
             - it's purpose is to set the initial values of all attributes
             - standard constructor receives all values for all attributes
-            - there is a default constructor (w/o parameters) automatically if no constructor is provided, which will call
-            the super constructor w/o parameters
+            - there is a default constructor (w/o parameters) automatically if no constructor is provided, which will call the super constructor w/o parameters
             - the default constructor will vanish if at least one constructor is given
             - overy other (overloaded) constructor must use the standard constructor (DRY - Don't repeat yourself)
-
-
+        - Self reference
+            - this: reference to the own object in current context (class)
+            - super: reference to the own object in parental context (base class)
+        - Access control via providing Getter/Setter methods
+        - All classes in Java inherit invisble from the Object class
+ 
+- Example
+    ```
+        write a class for calculating with ratio numbers (Ratio),
+        with two attributes: enumarator, denominator, and
+        some methods: add, sub, mult, div, reciprocal, reduce,
+        and two constructors with one and two parameters
+    ```

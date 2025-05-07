@@ -176,7 +176,7 @@
         n = 1  finished 16 length of this sequence
     ```
 
-- Exercise 4
+- Exercise 4:
     Number guessing game
 
     Write a guessing game, where the computer randomly choose a
@@ -197,4 +197,88 @@
          guess is      2739
          hint will be  *o--
     ```
+
+## Session 4
+07.05.2025
+
+- Methods
+    aka Functions, Procedures, Subroutines, ...
+
+    - Motivation / Purpose
+        - Avoid duplicate code, modularization, shifting responsibility
+        - Introducing a domain specific language
+        - Helps to delegate (sub-) problems to later implementation
+
+    - Structure of a method: Head Body
+        - Head
+            ```
+                e.g. public static void main (String[] args)
+                    ------ ------ ---- ----  -------------
+                                            + Parameters
+                                        + Name of the Method
+                                    + Returntype
+                            + Modificator(s)
+                    + Visibility
+
+                Signatur:               ****  *******
+                    - Name of the Method
+                    - Datatypes and order of the Parameters
+
+                -> for Overloading
+                    (Same name, but different signature)
+            ```
+        - Body: Implementation of a method,
+            enclosed in curly brackets, can be omitted
+
+    - Call paradigms
+        - Call by Value
+            - Parameters are only copies of the arguments passed
+            - applies to primitive datatypes
+        - Call by Reference
+            - parameters are the original of the arguments passed
+                and can be modified
+            - applies to all non primitive datatypes (complex/reference
+                datatypes)
+
+    - Recursive Methods
+        - method is calling itself
+        - it needs an abort condition
+
+- Object Oriented Programming
+    - Main concept of OOP
+        - model the real world to be present in software
+        - binding data and operation together
+        - three features of OOP
+            - Encapsulation (aka information hiding)
+                - different visibility levels (private, protected, public)
+                - **every attribute must be private, and only necessary methods could be public**
+            - Inheritance
+                - code/idea can be resued
+                - hiearchy => an **is-a** connection must be given
+            - Polymorphism
+                - every object can be seen as one of its base class
+                - overriding can change the behaviour of some methods
+
+    - Class
+        - is new compound datatype
+        - is a template/blueprint for objects/instance
+        - what kind of information is requried: attribute (member, field, property)
+        - what behaviour is available: method (operation, action, message)
+
+    - Object
+        - is created based on a specific class (datatype)
+        - it contains the values for the attributes (state)
+        - it has its own identity (reference)
+
+    - Practical issues
+        - Constructor (ctor)
+            - looks like a method, but has the same name as the class,
+                and has no returtype
+            - it's purpose is to set the initial values of all attributes
+            - standard constructor receives all values for all attributes
+            - there is a default constructor (w/o parameters) automatically if no constructor is provided, which will call
+            the super constructor w/o parameters
+            - the default constructor will vanish if at least one constructor is given
+            - overy other (overloaded) constructor must use the standard constructor (DRY - Don't repeat yourself)
+
 

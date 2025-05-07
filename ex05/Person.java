@@ -21,10 +21,24 @@ public class Person {
         return this.name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     public void setAge(int age) {
         if (age > 0)
             this.age = age;
         else
             this.age = 0;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + 
+            " (" + 
+            this.gender + 
+            "," + 
+            this.age + 
+            ")";
     }
 }

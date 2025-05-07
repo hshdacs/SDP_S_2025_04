@@ -292,3 +292,27 @@
         some methods: add, sub, mult, div, reciprocal, reduce,
         and two constructors with one and two parameters
     ```
+
+- Exercise
+    ```
+        Kingdom
+
+        In a kingdom there are different residents who must
+        pay taxes, 1/10 of their income, but at least 1 coin.
+
+        But there are other residents with benefits, who pay
+        other taxes, e.g.
+            - king : pays only 1 coin, no matter what income
+            - noble : pays at least 20 coins
+            - pawn : pays as normal resident
+            - adscript : pays normal as a resident, but his/her
+                income is deducted by 12 coins
+
+        There is resident hiearchy
+            resident : king, noble, pawn
+            pawn : adscript
+
+        The resident is a (abstract) class with only one attribute
+        (income), and has two methods called "taxes()", which
+        returns how much taxes he/she has to pay, and for convinience a method called "incomeBeforeTax()".
+    ```

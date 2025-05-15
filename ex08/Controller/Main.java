@@ -13,11 +13,16 @@ public class Main {
 //        AccountDAO accountDB = new AccountDBbyInMemory();
         AccountDAO accountDB = new AccountDBbySQL();
 
-        // accountDB.insertAccount( new Account(101, "Mr. Rich", 5001));
-        // accountDB.insertAccount(new Account(102, "Mr. Poor", 16));
-        // showAllAccounts(accountDB);
+        System.out.println("Latest Account number is " + accountDB.lastAccountNumber());
 
-        // accountDB.deleteAccount(101);
+        Account specificAccount = accountDB.getAccountByNumber(103);
+        System.out.println("My precious: " + specificAccount);
+
+        accountDB.insertAccount( new Account(105, "Red Shirt Guy", 0));
+        // accountDB.insertAccount(new Account(102, "Mr. Poor", 16));
+        showAllAccounts(accountDB);
+
+        accountDB.deleteAccount(105);
         showAllAccounts(accountDB);
     }
 

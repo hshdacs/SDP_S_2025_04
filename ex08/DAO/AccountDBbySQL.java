@@ -2,6 +2,7 @@ package ex08.DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,7 +11,7 @@ import java.util.List;
 
 import ex08.Model.Account;
 
-public class AccountDBbySQL implements AccountDAO {
+public class AccountDBbySQL extends AccountDBAbstract {
     private static final String SQL_MARIADB_HOST = "localhost";
     private static final String SQL_MARIADB_PORT = "3306";
     private static final String SQL_MARIADB_USER = "db2account";
@@ -47,14 +48,38 @@ public class AccountDBbySQL implements AccountDAO {
 
     @Override
     public boolean insertAccount(Account account) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insertAccount'");
+        // INSERT INTO account (number, owner, balance) VALUES (?, ?, ?);
+        try {
+            PreparedStatement sqlStatement = sqlConnection.prepareStatement(
+                "INSERT INTO account (number, owner, balance) VALUES (?, ?, ?)");
+            sqlStatement.setInt(1, account.getNumber());
+            sqlStatement.setString(2, account.getOwner());
+            sqlStatement.setDouble(3, account.getBalance());
+            return sqlStatement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override
     public Account getAccountByNumber(int number) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAccountByNumber'");
+        try {
+            PreparedStatement sqlStatement = sqlConnection.prepareStatement(
+                "SELECT owner,balance FROM account WHERE number = ?");
+            sqlStatement.setInt(1, number);
+            ResultSet dataTable = sqlStatement.executeQuery();
+            if (dataTable.next()) {
+                return new Account(
+                        number,
+                        dataTable.getString("owner"), 
+                        dataTable.getDouble("balance")
+                    );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -81,26 +106,36 @@ public class AccountDBbySQL implements AccountDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return accountList;
     }
 
     @Override
-    public boolean updateAccount(int number, Account account) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateAccount'");
-    }
-
-    @Override
     public boolean deleteAccount(int number) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteAccount'");
+        // DELETE FROM account WHERE number = ?;
+        try {
+            PreparedStatement sqlStatement = sqlConnection.prepareStatement(
+                "DELETE FROM account WHERE number = ?");
+            sqlStatement.setInt(1, number);
+            return sqlStatement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override
     public int lastAccountNumber() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'lastAccountNumber'");
+        try {
+            Statement sqlStatement = sqlConnection.createStatement();
+            ResultSet dataTable = sqlStatement.executeQuery(
+                "SELECT MAX(number) AS maxnumber FROM account");
+            if (dataTable.next()) {
+                return dataTable.getInt("maxnumber");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
     
 }

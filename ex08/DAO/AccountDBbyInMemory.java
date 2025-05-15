@@ -5,7 +5,7 @@ import java.util.List;
 
 import ex08.Model.Account;
 
-public class AccountDBbyInMemory implements AccountDAO {
+public class AccountDBbyInMemory extends AccountDBAbstract {
     private List<Account> accountList = new ArrayList<Account>();
 
     @Override
@@ -33,12 +33,6 @@ public class AccountDBbyInMemory implements AccountDAO {
     public Account getAccountByOwner(String owner) {
         // TODO implement this indiviudally
         throw new UnsupportedOperationException("Unimplemented method 'getAccountByOwner'");
-    }
-
-    @Override
-    public boolean updateAccount(int number, Account account) {
-        if ( ! deleteAccount(number) ) return false;
-        return insertAccount(account);
     }
 
     @Override

@@ -316,3 +316,10 @@
         (income), and has two methods called "taxes()", which
         returns how much taxes he/she has to pay, and for convinience a method called "incomeBeforeTax()".
     ```
+
+## Session 5
+15.05.2025
+
+- Database
+    - SQL : MariaDB (Docker Container, see docker-compose.yml)
+- GUI

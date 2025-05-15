@@ -13,11 +13,11 @@ public class Main {
 //        AccountDAO accountDB = new AccountDBbyInMemory();
         AccountDAO accountDB = new AccountDBbySQL();
 
-        accountDB.insertAccount( new Account(101, "Mr. Rich", 5001));
-        accountDB.insertAccount(new Account(102, "Mr. Poor", 16));
-        showAllAccounts(accountDB);
+        // accountDB.insertAccount( new Account(101, "Mr. Rich", 5001));
+        // accountDB.insertAccount(new Account(102, "Mr. Poor", 16));
+        // showAllAccounts(accountDB);
 
-        accountDB.deleteAccount(101);
+        // accountDB.deleteAccount(101);
         showAllAccounts(accountDB);
     }
 

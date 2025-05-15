@@ -322,4 +322,13 @@
 
 - Database
     - SQL : MariaDB (Docker Container, see docker-compose.yml)
+    - introducing 3-tier architecture
+        - presentation
+        - business logic
+        - persistence (aka data storage)
+    - persistence layer via DOA (Data Access Object) interface
 - GUI
+    - graphical interface will change application behaviour
+    - currently: IPO style (input - processing - output)
+    - with GUI: event driven (preparing - waiting - processing)
+    

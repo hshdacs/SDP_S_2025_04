@@ -2,13 +2,29 @@ package ex09.view;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.Panel;
+import java.awt.GridLayout;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainViewImpl extends JFrame implements MainView {
+
+    private JButton showButton = new JButton("Show");
+    private JButton newButton = new JButton("New");
+    private JButton deleteButton = new JButton("Delete");
+    private JButton forwardButton = new JButton("⮚");
+    private JButton backwardButton = new JButton("⮘");
+    private JTextField textAccountNumber = new JTextField();
+    private JTextField textAccountOwner = new JTextField();
+    private JTextField textAccountBalance = new JTextField();
 
     // Method 1 for Button actions
     public static class ExitButtonPerformer implements ActionListener {
@@ -28,17 +44,35 @@ public class MainViewImpl extends JFrame implements MainView {
         setSize(400, 250);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         addComponent();
+        pack();
         setVisible(true);
     }
 
     private void addComponent() {
         setLayout( new BorderLayout() );
 
-        Panel bottomPanel = new Panel( new FlowLayout() );
+        JPanel bottomPanel = new JPanel( new FlowLayout() );
         add( bottomPanel, BorderLayout.SOUTH );
 
+        JPanel centerPanel = new JPanel( new GridLayout(3, 2) );
+        centerPanel.setBorder(new EmptyBorder(5,5,5,5));
+        add( centerPanel, BorderLayout.CENTER );
+
+        centerPanel.add( new JLabel("Account number:") );
+        centerPanel.add( textAccountNumber );
+        centerPanel.add( new JLabel("Owner") );
+        centerPanel.add( textAccountOwner );
+        centerPanel.add( new JLabel("Current balance") );
+        centerPanel.add( textAccountBalance );
+
+        // Button Example
         JButton exitButton = new JButton("Exit");
+        bottomPanel.add(backwardButton);
+        bottomPanel.add( showButton );
+        bottomPanel.add( newButton );
         bottomPanel.add( exitButton );
+        bottomPanel.add(deleteButton);
+        bottomPanel.add(forwardButton);
 
         // Method 1
         exitButton.addActionListener(new ExitButtonPerformer() );
@@ -59,5 +93,82 @@ public class MainViewImpl extends JFrame implements MainView {
 
         // Method 4 (Functional Interface)
         exitButton.addActionListener(this::onClickExitButton);
+    }
+
+    @Override
+    public void showNumber(int number) {
+        textAccountNumber.setText( String.valueOf(number) );
+    }
+
+    @Override
+    public void showAccountOwner(String owner) {
+        textAccountOwner.setText(owner);
+    }
+
+    @Override
+    public void showBalance(double balance) {
+        textAccountBalance.setText( String.valueOf(balance) );
+    }
+
+    @Override
+    public void blankBalance() {
+        textAccountBalance.setText("");
+    }
+
+    @Override
+    public int getNumber() {
+        int number = 0;
+        try {
+            number = Integer.parseInt( textAccountNumber.getText() );
+        }
+        catch (NumberFormatException ex) {
+            showMessage("Please, enter a valid account number");
+        }
+        return number;
+    }
+
+    private void showMessage(String string) {
+    }
+
+    @Override
+    public String getAccountOwner() {
+        return textAccountOwner.getText();
+    }
+
+    @Override
+    public double getBalance() {
+        double balance = 0;
+        try {
+            balance = Double.parseDouble( textAccountBalance.getText() );
+        }
+        catch (NumberFormatException ex) {
+            showMessage("Please, enter a valid account balance");
+        }
+        return balance;
+    }
+
+    @Override
+    public void setShowButtonActionListener(ActionListener listener) {
+        showButton.addActionListener(listener);
+    }
+
+    @Override
+    public void setNewButtonActionListener(ActionListener listener) {
+        newButton.addActionListener(listener);
+    }
+
+    @Override
+    public void setDeleteButtonActionListener(ActionListener listener) {
+        deleteButton.addActionListener(listener);
+    }
+
+    @Override
+    public void setBackwardButtonActionListener(ActionListener listener) {
+        backwardButton.addActionListener(listener);
+    }
+
+    @Override
+    public void setForwardButtonActionListener(ActionListener listener) {
+        forwardButton.addActionListener(listener);
     }
 }

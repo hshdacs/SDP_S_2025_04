@@ -1,41 +1,71 @@
 package ex08;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AccountDBbyInMemory implements AccountDAO {
+    private List<Account> accountList = new ArrayList<Account>();
 
     @Override
     public boolean insertAccount(Account account) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insertAccount'");
+        if ( findAccountByNumer(account.getNumber()) != null )
+            return false;
+        accountList.add(account.clone());
+        return true;
+    }
+
+    private Account findAccountByNumer(int number) {
+        for (Account account : accountList) {
+            if (account.getNumber() == number)
+                return account; 
+        }
+        return null;
     }
 
     @Override
     public Account getAccountByNumber(int number) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAccountByNumber'");
+        return findAccountByNumer(number).clone();
     }
 
     @Override
     public Account getAccountByOwner(String owner) {
-        // TODO Auto-generated method stub
+        // TODO implement this indiviudally
         throw new UnsupportedOperationException("Unimplemented method 'getAccountByOwner'");
     }
 
     @Override
     public boolean updateAccount(int number, Account account) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateAccount'");
+        if ( ! deleteAccount(number) ) return false;
+        return insertAccount(account);
     }
 
     @Override
     public boolean deleteAccount(int number) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteAccount'");
+        for (int i = 0; i < accountList.size(); i++) {
+            if ( accountList.get(i).getNumber() == number ) {
+                accountList.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public int lastAccountNumber() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'lastAccountNumber'");
+        int lastNumber = 0;
+        for (Account account : accountList) {
+            if (account.getNumber() > lastNumber)
+                lastNumber = account.getNumber();
+        }
+        return lastNumber;
     }
 
+    @Override
+    public List<Account> getAllAccounts() {
+        List<Account> copyList = new ArrayList<>();
+        for (Account account : accountList) {
+            copyList.add(account.clone());
+        }
+        return copyList;
+    }
 }

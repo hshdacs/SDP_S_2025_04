@@ -1,5 +1,7 @@
 package ex08;
 
+import java.util.List;
+
 public interface AccountDAO {
     // standard database operations:
     // CRUD aka RUDI
@@ -9,6 +11,7 @@ public interface AccountDAO {
 
     Account getAccountByNumber(int number);
     Account getAccountByOwner(String owner);
+    List<Account> getAllAccounts();
 
     boolean updateAccount(int number, Account account);
 

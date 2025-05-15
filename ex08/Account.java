@@ -31,4 +31,14 @@ public class Account {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
+    public Account clone() {
+        return new Account(number, owner, balance);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%d] %s (%.2f)", number, owner, balance);
+        //return "[" + number + "] " + owner + " (" + balance + ")";
+    }
 }

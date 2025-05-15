@@ -9,6 +9,10 @@ public interface MainView {
     void showBalance(double balance);
     void blankBalance();
 
+    void showMessage(String message);
+    void showWarning(String message);
+    boolean confirmationDialog(String message);
+
     int getNumber();
     String getAccountOwner();
     double getBalance();

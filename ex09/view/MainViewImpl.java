@@ -3,6 +3,7 @@ package ex09.view;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
@@ -122,12 +123,26 @@ public class MainViewImpl extends JFrame implements MainView {
             number = Integer.parseInt( textAccountNumber.getText() );
         }
         catch (NumberFormatException ex) {
-            showMessage("Please, enter a valid account number");
+            showWarning("Please, enter a valid account number");
         }
         return number;
     }
 
-    private void showMessage(String string) {
+    @Override
+    public void showMessage(String message) {
+        JOptionPane.showMessageDialog(
+            this, message, "Information", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
+    public void showWarning(String message) {
+        JOptionPane.showMessageDialog(
+            this, message, "Warning", JOptionPane.WARNING_MESSAGE);
+    }
+
+    @Override
+    public boolean confirmationDialog(String message) {
+        return JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, message, "Question", JOptionPane.YES_NO_OPTION);
     }
 
     @Override

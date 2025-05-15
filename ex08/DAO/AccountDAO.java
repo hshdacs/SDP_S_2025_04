@@ -1,6 +1,8 @@
-package ex08;
+package ex08.DAO;
 
 import java.util.List;
+
+import ex08.Model.Account;
 
 public interface AccountDAO {
     // standard database operations:

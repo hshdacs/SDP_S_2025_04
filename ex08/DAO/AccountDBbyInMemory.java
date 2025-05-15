@@ -1,7 +1,9 @@
-package ex08;
+package ex08.DAO;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ex08.Model.Account;
 
 public class AccountDBbyInMemory implements AccountDAO {
     private List<Account> accountList = new ArrayList<Account>();

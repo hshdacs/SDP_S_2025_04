@@ -1,4 +1,4 @@
-package ex08;
+package ex08.Model;
 
 // Model, POJO, ValueClass
 public class Account {

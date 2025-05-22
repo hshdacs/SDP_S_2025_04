@@ -1,12 +1,13 @@
 package ex09.view;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
 
 import ex09.model.AccountType;
@@ -14,7 +15,6 @@ import ex09.model.AccountType;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,12 +23,13 @@ public class MainViewImpl extends JFrame implements MainView {
     private JButton showButton = new JButton("Show");
     private JButton newButton = new JButton("New");
     private JButton deleteButton = new JButton("Delete");
+    private JButton listButton = new JButton("List");
     private JButton forwardButton = new JButton("⮚");
     private JButton backwardButton = new JButton("⮘");
     private JTextField textAccountNumber = new JTextField();
     private JTextField textAccountOwner = new JTextField();
     private JTextField textAccountBalance = new JTextField();
-    private JTextField textAccountType = new JTextField();
+    private JComboBox<String> cboxAccountType = new JComboBox<>();
 
     // Method 1 for Button actions
     public static class ExitButtonPerformer implements ActionListener {
@@ -69,14 +70,15 @@ public class MainViewImpl extends JFrame implements MainView {
         centerPanel.add( new JLabel("Current balance") );
         centerPanel.add( textAccountBalance );
         centerPanel.add( new JLabel("Account type") );
-        centerPanel.add( textAccountType );
+        centerPanel.add( cboxAccountType );
 
         // Button Example
         JButton exitButton = new JButton("Exit");
         bottomPanel.add(backwardButton);
         bottomPanel.add( showButton );
         bottomPanel.add( newButton );
-        bottomPanel.add( exitButton );
+        //bottomPanel.add( exitButton );
+        bottomPanel.add( listButton );
         bottomPanel.add(deleteButton);
         bottomPanel.add(forwardButton);
 
@@ -136,12 +138,25 @@ public class MainViewImpl extends JFrame implements MainView {
 
     @Override
     public void showAccountType(AccountType type) {
-        textAccountType.setText( type.toString() );
+        for (int i=0; i < cboxAccountType.getItemCount(); i++) {
+            if ( cboxAccountType.getItemAt(i).equals(type.toString()) ) {
+                cboxAccountType.setSelectedIndex(i);
+                return;
+            }
+        }
+        cboxAccountType.setSelectedIndex(0);
     }
 
     @Override
     public AccountType getAccountType() {
-        return AccountType.valueOf( textAccountType.getText() );
+        try {
+            return AccountType.valueOf( (String)cboxAccountType.getSelectedItem() );
+        }
+        catch (IllegalArgumentException ignored) {}
+        catch (ClassCastException shouldNotHappening) {
+            shouldNotHappening.printStackTrace();
+        }
+        return AccountType.Silver;
     }
 
     @Override
@@ -179,8 +194,18 @@ public class MainViewImpl extends JFrame implements MainView {
     }
 
     @Override
+    public void setCboxAccountTypeModel(DefaultComboBoxModel<String> defaultModel) {
+        cboxAccountType.setModel(defaultModel);
+    }
+
+    @Override
     public void setShowButtonActionListener(ActionListener listener) {
         showButton.addActionListener(listener);
+    }
+
+    @Override
+    public void setListButtonActionListener(ActionListener listener) {
+        listButton.addActionListener(listener);
     }
 
     @Override
@@ -201,5 +226,15 @@ public class MainViewImpl extends JFrame implements MainView {
     @Override
     public void setForwardButtonActionListener(ActionListener listener) {
         forwardButton.addActionListener(listener);
+    }
+
+    @Override
+    public void enableWindow(boolean enabled) {
+        setEnabled(enabled);
+    }
+
+    @Override
+    public void getFocus() {
+        requestFocus();
     }
 }

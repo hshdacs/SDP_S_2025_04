@@ -101,8 +101,8 @@ public class AccountDBbySQL extends AccountDBAbstract {
         try {
             Statement sqlStatement = sqlConnection.createStatement();
             ResultSet dataTable = sqlStatement.executeQuery(
-                "SELECT owner,balance,accountType.name AS accountType" +
-                "FROM account JOIN accountType ON account.accountTypeID = accountType.id " 
+                "SELECT number,owner,balance,accountType.name AS accountType " +
+                "FROM account JOIN accountType ON account.accountTypeID = accountType.id" 
                 );
             while (dataTable.next()) {
                 accountList.add(

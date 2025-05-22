@@ -331,4 +331,9 @@
     - graphical interface will change application behaviour
     - currently: IPO style (input - processing - output)
     - with GUI: event driven (preparing - waiting - processing)
-    
+
+## Session 6
+22.05.2025
+
+- completing some more GUI features
+- dry run of the examination

@@ -2,12 +2,15 @@ package ex09.view;
 
 import java.awt.event.ActionListener;
 
+import ex09.model.AccountType;
+
 public interface MainView {
 
     void showNumber(int number);
     void showAccountOwner(String owner);
     void showBalance(double balance);
     void blankBalance();
+    void showAccountType(AccountType type);
 
     void showMessage(String message);
     void showWarning(String message);
@@ -16,6 +19,7 @@ public interface MainView {
     int getNumber();
     String getAccountOwner();
     double getBalance();
+    AccountType getAccountType();
 
     void setShowButtonActionListener(ActionListener listener);
     void setNewButtonActionListener(ActionListener listener);

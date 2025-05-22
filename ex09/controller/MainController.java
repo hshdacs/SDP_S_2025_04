@@ -2,8 +2,9 @@ package ex09.controller;
 
 import java.awt.event.ActionEvent;
 
-import ex08.DAO.AccountDAO;
-import ex08.Model.Account;
+import ex09.model.AccountType;
+import ex09.dao.AccountDAO;
+import ex09.model.Account;
 import ex09.view.MainView;
 
 public class MainController {
@@ -17,14 +18,43 @@ public class MainController {
         mainView.setShowButtonActionListener(this::onClickShowButton);
         mainView.setDeleteButtonActionListener(this::onClickDeleteButton);
         mainView.setNewButtonActionListener(this::onClickNewButton);
+        mainView.setForwardButtonActionListener(this::onClickForwardButton);
+        mainView.setBackwardButtonActionListener(this::onClickBackwardButton);
+    }
+
+    public void onClickForwardButton(ActionEvent e) {
+        int number = mainView.getNumber();
+        int lastNumber = accountDAO.lastAccountNumber();
+        Account account = null;
+        do {
+            number++;
+            if (number > lastNumber) number=1;
+            account = accountDAO.getAccountByNumber(number);
+        } while (account == null);
+        mainView.showNumber(number);
+        onClickShowButton(e);
+    }
+
+    public void onClickBackwardButton(ActionEvent e) {
+        int number = mainView.getNumber();
+        int lastNumber = accountDAO.lastAccountNumber();
+        Account account = null;
+        do {
+            number--;
+            if (number < 1) number = lastNumber;
+            account = accountDAO.getAccountByNumber(number);
+        } while (account == null);
+        mainView.showNumber(number);
+        onClickShowButton(e);
     }
 
     public void onClickNewButton(ActionEvent e) {
         int number = mainView.getNumber();
         String owner = mainView.getAccountOwner();
+        AccountType type = mainView.getAccountType();
         if (number > 0 && !owner.isBlank()) {
             double balance = mainView.getBalance();
-            if (accountDAO.insertAccount( new Account(number, owner, balance)))
+            if (accountDAO.insertAccount( new Account(number, owner, balance, type)))
                 mainView.showMessage("Account added successfully");
             else   
                 mainView.showWarning("Unable to add this account");
@@ -56,6 +86,7 @@ public class MainController {
             if (account != null) {
                 mainView.showAccountOwner(account.getOwner());
                 mainView.showBalance(account.getBalance());
+                mainView.showAccountType(account.getAccountType());
                 return;
             }
             else {
@@ -65,5 +96,6 @@ public class MainController {
         }
         mainView.showAccountOwner("");
         mainView.blankBalance();
+        // TODO
     }
 }

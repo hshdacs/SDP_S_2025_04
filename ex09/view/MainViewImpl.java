@@ -9,6 +9,8 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
 
+import ex09.model.AccountType;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -26,6 +28,7 @@ public class MainViewImpl extends JFrame implements MainView {
     private JTextField textAccountNumber = new JTextField();
     private JTextField textAccountOwner = new JTextField();
     private JTextField textAccountBalance = new JTextField();
+    private JTextField textAccountType = new JTextField();
 
     // Method 1 for Button actions
     public static class ExitButtonPerformer implements ActionListener {
@@ -55,7 +58,7 @@ public class MainViewImpl extends JFrame implements MainView {
         JPanel bottomPanel = new JPanel( new FlowLayout() );
         add( bottomPanel, BorderLayout.SOUTH );
 
-        JPanel centerPanel = new JPanel( new GridLayout(3, 2) );
+        JPanel centerPanel = new JPanel( new GridLayout(4, 2) );
         centerPanel.setBorder(new EmptyBorder(5,5,5,5));
         add( centerPanel, BorderLayout.CENTER );
 
@@ -65,6 +68,8 @@ public class MainViewImpl extends JFrame implements MainView {
         centerPanel.add( textAccountOwner );
         centerPanel.add( new JLabel("Current balance") );
         centerPanel.add( textAccountBalance );
+        centerPanel.add( new JLabel("Account type") );
+        centerPanel.add( textAccountType );
 
         // Button Example
         JButton exitButton = new JButton("Exit");
@@ -122,10 +127,21 @@ public class MainViewImpl extends JFrame implements MainView {
         try {
             number = Integer.parseInt( textAccountNumber.getText() );
         }
-        catch (NumberFormatException ex) {
-            showWarning("Please, enter a valid account number");
+        catch (NumberFormatException ignored) {
+            // silencing this exception
+            //showWarning("Please, enter a valid account number");
         }
         return number;
+    }
+
+    @Override
+    public void showAccountType(AccountType type) {
+        textAccountType.setText( type.toString() );
+    }
+
+    @Override
+    public AccountType getAccountType() {
+        return AccountType.valueOf( textAccountType.getText() );
     }
 
     @Override

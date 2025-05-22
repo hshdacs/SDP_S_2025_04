@@ -1,6 +1,7 @@
 package ex09.view;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -8,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import ex09.model.AccountType;
@@ -55,6 +57,10 @@ public class MainViewImpl extends JFrame implements MainView {
 
     private void addComponent() {
         setLayout( new BorderLayout() );
+
+        JPanel topPanel = new JPanel( new FlowLayout() );
+        topPanel.add( new JLabel(new ImageIcon("ex09/srh-logo.png")) );
+        add( topPanel, BorderLayout.NORTH );
 
         JPanel bottomPanel = new JPanel( new FlowLayout() );
         add( bottomPanel, BorderLayout.SOUTH );

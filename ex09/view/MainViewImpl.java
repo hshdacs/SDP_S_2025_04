@@ -141,7 +141,11 @@ public class MainViewImpl extends JFrame implements MainView {
 
     @Override
     public AccountType getAccountType() {
-        return AccountType.valueOf( textAccountType.getText() );
+        try {
+            return AccountType.valueOf( textAccountType.getText() );
+        }
+        catch (IllegalArgumentException ignored) {}
+        return AccountType.Silver;
     }
 
     @Override
